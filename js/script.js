@@ -11,6 +11,7 @@ project 1 - A Random Quote Generator
  * `quotes` array 
 ***/
 
+// create a list called quotes and include multiple objects with the quote author, and citation/ year if applicable
 let quotes = [
   {
       quote: " Don't ever let somebody tell you... You can't do something. Not even me. All right? You got a dream... You gotta protect it. People can't do somethin' themselves, they wanna tell you you can't do it. If you want somethin', go get it. Period.",
@@ -47,29 +48,67 @@ let quotes = [
       source: "Franklin D. Roosevelt",
       citation: "Franklin Delano Roosevelt's First Inaugural Address",
       year: "March 4, 1933", 
+  },
+  {
+    quote: "Once you stop learning, you start dying.",
+    source: "Albert Einstein"
   }
   
 ];
-
 
 
 /***
  * `getRandomQuote` function
 ***/
 
-const getRandomQuote = arr => {
-  for (i = 0; i < quotes.length; i++) {
-      const randomQuote = Math.random(arr[i])
-  }
- return randomQuote;
-}
+// function randomly selects a # from 0 to length of array and stores it in a variable to be called on later
+function getRandomQuote() {
+  
+  // 1. Create a variable that generates a random number
+  // between zero and the last index in the `quotes` array
+  min = 0;
+  max = quotes.length;
+  const randomNum = Math.floor(Math.random() * (max - min) + min);
 
-console.log(getRandomQuote(quotes));
+  // 2. Use the random number variable and bracket notation 
+  // to grab a random object from the `quotes` array, and 
+  // store it in a variable
+  const randomQuote = quotes[randomNum];
+
+  // 3. Return the variable storing the random quote object
+  return randomQuote;
+}
 
 /***
  * `printQuote` function
 ***/
 
+// function grabs the random quote generated from previous function, pulls all the values and inserts them into HTML
+const printQuote = () => {
+  const calledQuote = getRandomQuote();
+  let randQuote = `
+  <p class = "quote">${calledQuote.quote}</p>
+  <p class = "source">${calledQuote.source} `
+  if ( calledQuote.citation ) { // does quote have citation?
+    randQuote += `<span class = "citation">${calledQuote.citation}</span>`;
+  }
+  if ( calledQuote.year ) { // does quote have year?
+    randQuote += `<span class = "year">${calledQuote.year}</span>`;
+  }
+
+  document.getElementById('quote-box').innerHTML = randQuote;
+  //console.log(randQuote);
+
+   /*** create random background color
+   let r = Math.floor(Math.random() * 256);
+   let g = Math.floor(Math.random() * 256);
+   let b = Math.floor(Math.random() * 256);
+   let rgb = `rgb(${r},${g},${b})`;
+   let randBackgroundColor = `style = background-color: ${rgb}`;
+
+   //document.getElementById('background-color').innerHTML = randBackgroundColor;
+   ***/
+}
 
 
 /***
