@@ -64,19 +64,14 @@ let quotes = [
 // function randomly selects a # from 0 to length of array and stores it in a variable to be called on later
 function getRandomQuote() {
   
-  // 1. Create a variable that generates a random number
-  // between zero and the last index in the `quotes` array
+  // create min and max numbers for random generator
   min = 0;
   max = quotes.length;
   const randomNum = Math.floor(Math.random() * (max - min) + min);
 
-  // 2. Use the random number variable and bracket notation 
-  // to grab a random object from the `quotes` array, and 
-  // store it in a variable
-  const randomQuote = quotes[randomNum];
+  const randomQuote = quotes[randomNum]; // assigns random number to array
 
-  // 3. Return the variable storing the random quote object
-  return randomQuote;
+  return randomQuote; //return the random array
 }
 
 /***
@@ -109,11 +104,5 @@ const printQuote = () => {
    //document.getElementById('background-color').innerHTML = randBackgroundColor;
    ***/
 }
-
-
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
