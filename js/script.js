@@ -3,14 +3,6 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
- * `quotes` array 
-***/
-
 // create a list called quotes and include multiple objects with the quote author, and citation/ year if applicable
 let quotes = [
   {
@@ -56,53 +48,41 @@ let quotes = [
   
 ];
 
-
-/***
- * `getRandomQuote` function
-***/
-
 // function randomly selects a # from 0 to length of array and stores it in a variable to be called on later
 function getRandomQuote() {
-  
-  // create min and max numbers for random generator
   min = 0;
   max = quotes.length;
+
   const randomNum = Math.floor(Math.random() * (max - min) + min);
-
   const randomQuote = quotes[randomNum]; // assigns random number to array
-
-  return randomQuote; //return the random array
+  return randomQuote;
 }
-
-/***
- * `printQuote` function
-***/
 
 // function grabs the random quote generated from previous function, pulls all the values and inserts them into HTML
 const printQuote = () => {
   const calledQuote = getRandomQuote();
-  let randQuote = `
-  <p class = "quote">${calledQuote.quote}</p>
-  <p class = "source">${calledQuote.source} `
+  let randQuote = 
+  `
+    <p class = "quote">${calledQuote.quote}</p>
+    <p class = "source">${calledQuote.source}
+  `
   if ( calledQuote.citation ) { // does quote have citation?
     randQuote += `<span class = "citation">${calledQuote.citation}</span>`;
   }
+
   if ( calledQuote.year ) { // does quote have year?
     randQuote += `<span class = "year">${calledQuote.year}</span>`;
   }
 
   document.getElementById('quote-box').innerHTML = randQuote;
-  //console.log(randQuote);
 
-   /*** create random background color
-   let r = Math.floor(Math.random() * 256);
-   let g = Math.floor(Math.random() * 256);
-   let b = Math.floor(Math.random() * 256);
-   let rgb = `rgb(${r},${g},${b})`;
-   let randBackgroundColor = `style = background-color: ${rgb}`;
-
-   //document.getElementById('background-color').innerHTML = randBackgroundColor;
-   ***/
+  // create random background color
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  let rgb = `rgb(${r},${g},${b})`;
+  let randBackgroundColor = document.querySelector('#background-color');
+  randBackgroundColor.style.backgroundColor =  rgb;   
 }
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
